@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up / Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@tailwindcss/browser@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: url('images/ba4ef454b7f8cecb28fa024bc495c451.jpg'); 
+            background-size: cover;  
+            background-repeat: no-repeat; 
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Sign Up / Login</h2>
+        <form id="authForm">
+            <div id="nameInput" class="mb-4">
+                <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name</label>
+                <input type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter your name">
+            </div>
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                <input type="email" id="email" name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter your email">
+            </div>
+            <div class="mb-6">
+                <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                <input type="password" id="password" name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter your password">
+            </div>
+            <div class="flex items-center justify-center">
+                <button id="submitButton" type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">
+                    Sign Up
+                </button>
+            </div>
+        </form>
+        <div class="mt-4 text-center">
+            <a href="#" id="toggleLink" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+                Already have an account? Login
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const authForm = document.getElementById('authForm');
+        const nameInput = document.getElementById('nameInput');
+        const submitButton = document.getElementById('submitButton');
+        const toggleLink = document.getElementById('toggleLink');
+
+        let isLogin = false;
+
+        toggleLink.addEventListener('click', (event) => {
+            event.preventDefault();
+            isLogin = !isLogin;
+            if (isLogin) {
+                submitButton.textContent = 'Login';
+                toggleLink.textContent = 'Don\'t have an account? Sign Up';
+                nameInput.style.display = 'none';
+            } else {
+                submitButton.textContent = 'Sign Up';
+                toggleLink.textContent = 'Already have an account? Login';
+                nameInput.style.display = 'block';
+            }
+        });
+
+        authForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (isLogin) {
+                // Handle login logic here
+                console.log('Logging in with:', email, password);
+                // For demonstration purposes, let's just redirect to a dummy page after "successful" login
+                window.location.href = 'main.html'; // Redirect to the main page
+            } else {
+                // Handle sign up logic here
+                const name = document.getElementById('name').value;
+                console.log('Signing up with:', name, email, password);
+                // After successful sign up, you might want to automatically log the user in
+                // In a real application, you would handle this on the server-side
+                // For this example, we'll just simulate a login after signup
+                window.location.href = 'main.html'; // Redirect to the main page
+            }
+        });
+    </script>
+    <style>
+    </style> 
+</body>
+</html>
